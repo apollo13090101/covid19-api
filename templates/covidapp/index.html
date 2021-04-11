@@ -1,0 +1,135 @@
+{% extends 'common/base.html' %}
+{% block title %}Apollo Weather{% endblock %}
+{% block content %}
+    <style>
+        h3 {
+            font-size: 1.7rem !important;
+        }
+
+        h5 {
+            font-size: 1.9rem !important;
+        }
+
+        h3, h5 {
+            color: whitesmoke !important;
+        }
+
+        .bg-blue {
+            background-color: #28b5b5 !important;
+        }
+
+        .bg-blue-dark {
+            background-color: #1597bb !important;
+        }
+
+        .bg-red {
+            background-color: #fa1e0e !important;
+        }
+
+        .bg-green {
+            background-color: #29bb89 !important;
+        }
+
+        .bg-brown-dark {
+            background-color: #85603f !important;
+        }
+
+        .bg-purple {
+            background-color: #93329e !important;
+        }
+    </style>
+    <h3 class="text-dark text-uppercase">Covid 19 - Global Data</h3>
+    <small class="text-muted">Updated: {{ global_summary.Date }}</small>
+
+    <hr class="my-4">
+
+    <div class="row row-cols-1 row-cols-md-3 justify-content-center mb-4">
+        <div class="col mb-4">
+            <div class="card h-100 shadow bg-blue">
+                <div class="card-header bg-transparent">
+                    <h5 class="text-left">New Confirmed</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title text-right">{{ global_summary.NewConfirmed }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-4">
+            <div class="card h-100 shadow bg-red">
+                <div class="card-header bg-transparent">
+                    <h5 class="text-left">New Deaths</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title text-right">{{ global_summary.NewDeaths }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-4">
+            <div class="card h-100 shadow bg-green">
+                <div class="card-header bg-transparent">
+                    <h5 class="text-left">New Recoverd</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title text-right">{{ global_summary.NewRecovered }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-4">
+            <div class="card h-100 shadow bg-blue-dark">
+                <div class="card-header bg-transparent">
+                    <h5 class="text-left">Total Confirmed</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title text-right">{{ global_summary.TotalConfirmed }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-4">
+            <div class="card h-100 shadow bg-brown-dark">
+                <div class="card-header bg-transparent">
+                    <h5 class="text-left">Total Deaths</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title text-right">{{ global_summary.TotalDeaths }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-4">
+            <div class="card h-100 shadow bg-purple">
+                <div class="card-header bg-transparent">
+                    <h5 class="text-left">Total Recovered</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title text-right">{{ global_summary.TotalRecovered }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="text-dark text-uppercase">Country Wise Summary</h3>
+
+    <hr class="my-4">
+
+    <table id="example" class="table display" style="width:100%">
+        <thead class="thead-dark">
+        <tr>
+            <th>#</th>
+            <th>Country</th>
+            <th>Total Confirmed</th>
+            <th>Total Deaths</th>
+            <th>Total Recovered</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for c in countries %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ c.CountryCode }} - {{ c.Country }}</td>
+                <td>{{ c.TotalConfirmed }}</td>
+                <td>{{ c.TotalDeaths }}</td>
+                <td>{{ c.TotalRecovered }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
