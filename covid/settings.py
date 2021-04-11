@@ -167,10 +167,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #     messages.ERROR: 'danger'
 # }
 
-# try:
-#     from covid.local_settings import *
-# except ImportError:
-#     pass
+try:
+    from covid.local_settings import *
+except ImportError:
+    pass
 
 WHITENOISE_USE_FINDERS = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
